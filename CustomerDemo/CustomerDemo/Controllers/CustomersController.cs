@@ -54,7 +54,27 @@ namespace CustomerDemo.Controllers
                 siren.Properties.Add(new Property { Name = "Id", Value = customer.Id });
                 siren.Properties.Add(new Property { Name = "LastContact", Value = customer.LastContact });
                 siren.Properties.Add(new Property { Name = "IsFavorite", Value = customer.IsFavorite });
-                //ToDo Add Action
+                if (!customer.IsFavorite)
+                {
+                    //ToDo Add Action
+                    siren.Actions.Add(new Hypermedia.Action
+                    {
+                        Name = "MarkAsFavorite",
+                        Title = "Fügt den Customer als Favorit hinzu",
+                        Method = "POST",
+                        Href = Url.Link(RouteNames.CUSTOMERS_MARKASFAVORITE, new { key = id })
+                    });
+                }
+                if (customer.IsFavorite)
+                {
+                    siren.Actions.Add(new Hypermedia.Action
+                    {
+                        Name = "UnmarkAsFavorite",
+                        Title = "Entfernt den Customer von den Favoriten",
+                        Method = "DELETE",
+                        Href = Url.Link(RouteNames.CUSTOMERS_UNMARKASFAVORITE, new  { key = id })
+                    });
+                }
                 siren.Links.Add(new Link
                 {
                     Relation = new List<string>() { "self" },

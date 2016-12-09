@@ -14,5 +14,6 @@ namespace CustomerDemo.Controllers
         public const string CUSTOMERS_GETCUSTOMER= "CUSTOMERS_GETCUSTOMER";
         public const string CUSTOMERS_GETALLCUSTOMERS = "CUSTOMERS_GETALLCUSTOMERS";
         public const string CUSTOMERS_MARKASFAVORITE = "CUSTOMERS_MARKASFAVORITE";
+        public const string CUSTOMERS_UNMARKASFAVORITE = "cUSTOMERS_UNMARKASFAVORITE";
     }
 }

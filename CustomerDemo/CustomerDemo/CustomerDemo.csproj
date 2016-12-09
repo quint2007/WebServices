@@ -242,6 +242,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\CustomerDemoAH - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomerDemoAH - Web Deploy.pubxml" />
     <None Include="Resources\Download.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

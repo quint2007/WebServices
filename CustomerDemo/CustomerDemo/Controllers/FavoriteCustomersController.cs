@@ -40,9 +40,7 @@ namespace CustomerDemo.Controllers
             });
 
             return siren;
-        }
-
-        
+        }       
 
         [HttpPost]
         [Route("api/FavoriteCustomers/{key:int}", Name = RouteNames.CUSTOMERS_MARKASFAVORITE)]
@@ -52,6 +50,23 @@ namespace CustomerDemo.Controllers
             if (CustomerRepository.TryGet(key, out customer))
             {
                 customer.IsFavorite = true;
+                return;
+            }
+            //Ups. Customer nicht vorhanden. 404 zurück
+            var msg = new HttpResponseMessage(HttpStatusCode.NotFound);
+            msg.Content = new StringContent($"Kein Kunde mit der Id {key} vorhanden.");
+            msg.ReasonPhrase = "No Customer";
+            throw new HttpResponseException(msg);
+        }
+
+        [HttpDelete]
+        [Route("api/FavoriteCustomers/{key:int}", Name = RouteNames.CUSTOMERS_UNMARKASFAVORITE)]
+        public void UnmarkAsFavorit(int key)
+        {
+            Customer customer;
+            if (CustomerRepository.TryGet(key, out customer))
+            {
+                customer.IsFavorite = false;
                 return;
             }
             //Ups. Customer nicht vorhanden. 404 zurück
